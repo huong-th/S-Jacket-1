@@ -35,6 +35,14 @@ public class Form_SanPham extends javax.swing.JPanel {
         tblModel = (DefaultTableModel) tblSanPham.getModel();
         loadDataSanPham(sps.getAllSanPham());
         rdoHoatDong3.setSelected(true);
+//        String text = txtTimKiem.getText();
+//        if(rdoSearchHD.isSelected()){
+//            loadDataSanPham(sps.getAllSPHD(text));
+//        }
+//        if(rdoSearchNHD.isSelected()){
+//            loadDataSanPham(sps.getAllSPNHD(text));
+//        }
+
     }
 
     private void loadDataSanPham(ArrayList<SanPham> list) {
@@ -1325,13 +1333,25 @@ public class Form_SanPham extends javax.swing.JPanel {
 
     private void txtTimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiemKeyReleased
         // TODO add your handling code here:
+//        try {
+//            String text = "%" + txtTimKiem.getText().trim() + "%";
+//            if (txtTimKiem.getText().isEmpty()) {
+//                loadDataSanPham(sps.getAllSanPham());
+//            } else {
+//                ArrayList<SanPham> list = sps.searchSP(text);
+//                loadDataSanPham(list);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace(System.out);
+//        }
+
         try {
             String text = "%" + txtTimKiem.getText().trim() + "%";
-            if (txtTimKiem.getText().isEmpty()) {
-                loadDataSanPham(sps.getAllSanPham());
+            if (rdoSearchHD.isSelected()) {
+                loadDataSanPham(sps.getAllSPHD(text));
             } else {
-                ArrayList<SanPham> list = sps.searchSP(text);
-                loadDataSanPham(list);
+                //ArrayList<SanPham> list = sps.getAllSPNHD(text);
+                loadDataSanPham(sps.getAllSPNHD(text));
             }
         } catch (Exception e) {
             e.printStackTrace(System.out);
@@ -1359,7 +1379,7 @@ public class Form_SanPham extends javax.swing.JPanel {
 
     private void rdoSearchNHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoSearchNHDActionPerformed
         // TODO add your handling code here:
-                try {
+        try {
             String text = "%" + txtTimKiem.getText().trim() + "%";
             if (txtTimKiem.getText().isEmpty()) {
                 loadDataSanPham(sps.getAllSPNHD(text));
