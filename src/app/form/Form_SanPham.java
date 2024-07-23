@@ -8,20 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.ChatLieu;
-import model.KieuDang;
-import model.LopLot;
-import model.MauSac;
-import model.Mu;
-import model.SanPham;
-import model.Size;
-import service.ChatLieuService;
-import service.KieuDangService;
-import service.LopLotService;
-import service.MauSacService;
-import service.MuService;
-import service.SanPhamService;
-import service.SizeService;
+import app.model.ChatLieu;
+import app.model.KieuDang;
+import app.model.LopLot;
+import app.model.MauSac;
+import app.model.Mu;
+import app.model.SanPham;
+import app.model.Size;
+import app.service.ChatLieuService;
+import app.service.KieuDangService;
+import app.service.LopLotService;
+import app.service.MauSacService;
+import app.service.MuService;
+import app.service.SanPhamService;
+import app.service.SizeService;
 
 /**
  *

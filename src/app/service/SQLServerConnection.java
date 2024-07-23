@@ -16,7 +16,7 @@ public class SQLServerConnection {
      public static final String HOSTNAME = "localhost";
     public static final String PORT = "1433";
     public static final String USERNAME = "sa";
-    public static final String PASSWORD = "dat123";
+    public static final String PASSWORD = "thuhuong0910";
 
     public static Connection getConnection(String database) {
 
