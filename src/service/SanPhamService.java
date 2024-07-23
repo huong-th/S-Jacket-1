@@ -54,16 +54,17 @@ public class SanPhamService {
         return row;
     }
 
-    public Integer deleteSanPham(SanPham sp) {
+    public Integer updateSanPham(SanPham sp) {
         Integer row = null;
         String sql = "update SANPHAM\n"
-                + "set TRANGTHAI = 0\n"
+                + "set TRANGTHAI = ?, TENSP = ?\n"
                 + "where MASP = ?";
         Connection con = DBConnect.getConnection();
         try {
             PreparedStatement pstm = con.prepareStatement(sql);
-            //pstm.setBoolean(1, sp.isTrangThai());
-            pstm.setString(1, sp.getMaSP());
+            pstm.setBoolean(1, sp.isTrangThai());
+            pstm.setString(2, sp.getTenSP());
+            pstm.setString(3, sp.getMaSP());
             row = pstm.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace(System.out);
@@ -155,36 +156,36 @@ public class SanPhamService {
         return list;
     }
 
-    public ArrayList<SanPham> getAllSanPhamChiTiet1(String maSP) {
-        ArrayList<SanPham> list = new ArrayList<>();
-        String sql = "SELECT spct.IDSANPHAM, sp.TENSP, ms.TENMAU, cl.TENCHATLIEU, ll.TENLOPLOT, spct.SOLUONG, s.TENSIZE, spct.MOTA, spct.TRANGTHAI \n"
-                + "FROM SANPHAMCHITIET spct \n"
-                + "LEFT JOIN SANPHAM sp ON sp.IDSANPHAM = spct.IDSANPHAM\n"
-                + "LEFT JOIN MAUSAC ms ON spct.IDMAUSAC = ms.IDMAUSAC\n"
-                + "LEFT JOIN CHATLIEU cl ON spct.IDCHATLIEU = cl.IDCHATLIEU\n"
-                + "LEFT JOIN MU m ON spct.IDMU = m.IDMU\n"
-                + "LEFT JOIN SIZE s ON spct.IDSIZE = s.IDSIZE\n"
-                + "LEFT JOIN LOPLOT ll ON spct.IDLOPLOT = ll.IDLOPLOT\n"
-                + "LEFT JOIN KIEUDANG kd ON spct.IDKIEUDANG = kd.IDKIEUDANG\n"
-                + "where sp.IDSANPHAM = ?";
-        Connection con = DBConnect.getConnection();
-        try {
-            PreparedStatement pstm = con.prepareStatement(sql);
-            pstm.setString(1, maSP);
-            ResultSet rs = pstm.executeQuery();
-            while (rs.next()) {
-                SanPham sp = new SanPham();
-                sp.setId(rs.getInt("IDSANPHAM"));
-                sp.setMaSP(rs.getString("MASP"));
-                sp.setTenSP(rs.getString("TENSP"));
-                sp.setTrangThai(rs.getBoolean("TRANGTHAI"));
-                list.add(sp);
-            }
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
-        }
-        return list;
-    }
+//    public ArrayList<SanPham> getAllSanPhamChiTiet1(String maSP) {
+//        ArrayList<SanPham> list = new ArrayList<>();
+//        String sql = "SELECT spct.IDSANPHAM, sp.TENSP, ms.TENMAU, cl.TENCHATLIEU, ll.TENLOPLOT, spct.SOLUONG, s.TENSIZE, spct.MOTA, spct.TRANGTHAI \n"
+//                + "FROM SANPHAMCHITIET spct \n"
+//                + "LEFT JOIN SANPHAM sp ON sp.IDSANPHAM = spct.IDSANPHAM\n"
+//                + "LEFT JOIN MAUSAC ms ON spct.IDMAUSAC = ms.IDMAUSAC\n"
+//                + "LEFT JOIN CHATLIEU cl ON spct.IDCHATLIEU = cl.IDCHATLIEU\n"
+//                + "LEFT JOIN MU m ON spct.IDMU = m.IDMU\n"
+//                + "LEFT JOIN SIZE s ON spct.IDSIZE = s.IDSIZE\n"
+//                + "LEFT JOIN LOPLOT ll ON spct.IDLOPLOT = ll.IDLOPLOT\n"
+//                + "LEFT JOIN KIEUDANG kd ON spct.IDKIEUDANG = kd.IDKIEUDANG\n"
+//                + "where sp.IDSANPHAM = ?";
+//        Connection con = DBConnect.getConnection();
+//        try {
+//            PreparedStatement pstm = con.prepareStatement(sql);
+//            pstm.setString(1, maSP);
+//            ResultSet rs = pstm.executeQuery();
+//            while (rs.next()) {
+//                SanPham sp = new SanPham();
+//                sp.setId(rs.getInt("IDSANPHAM"));
+//                sp.setMaSP(rs.getString("MASP"));
+//                sp.setTenSP(rs.getString("TENSP"));
+//                sp.setTrangThai(rs.getBoolean("TRANGTHAI"));
+//                list.add(sp);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace(System.out);
+//        }
+//        return list;
+//    }
 
 //     public ArrayList<SanPham> searchSP(String texttk, boolean trangThai) {
 //        ArrayList<SanPham> list = new ArrayList<>();
